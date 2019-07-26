@@ -13,7 +13,10 @@ namespace scratch
         static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+            //Allows the project to find the root directory for views etc.
+            .UseContentRoot(Directory.GetCurrentDirectory())
             .UseKestrel()
+            //Targets the Startup Class for startup directions
             .UseStartup<Startup>()
             .Build();
 
