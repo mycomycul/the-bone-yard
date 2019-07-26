@@ -3,6 +3,8 @@ using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace scratch
 {
@@ -18,14 +20,17 @@ namespace scratch
             host.Run();
         }
     }
-    public class Startup{
-        public void Configure(IApplicationBuilder app){
-            app.Run(async(context) =>
-            {
-                await context.Response.WriteAsync(
-                    $"Hello World. The Time is: {DateTime.Now.ToString("hh:mm:ss tt")}");
-               
-            });
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseMvc();
         }
     }
+
+    
 }
